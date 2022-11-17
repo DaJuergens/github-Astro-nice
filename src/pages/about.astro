@@ -1,0 +1,67 @@
+---
+  const pageTitle='About Me';
+  const identity = {
+    firstName: 'Patrick',
+    country: 'Germany',
+    occupation: 'Designer and Developper',
+    hobbies: ['code', 'development', 'other'],
+  };
+
+  const skills=['HTML', 'CSS', 'JavaScript'];
+
+  const happy= true;
+  const finished = false;
+  const goal = 3;
+  const skillColor = "navy";
+  const textCase ="uppercase";
+  const fontWeight="bold";
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type ="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content = {Astro.generator} >
+    <title>{pageTitle}</title>
+        <style define:vars={{skillColor, textCase, fontWeight}}>
+        * {
+          font-family: sans-serif;
+        } 
+        h1 {
+          color:  gray;
+          font-size: 2rem;
+        }
+
+        .skill {
+          color: var(--skillColor);
+          font-weight: var(--fontWeight);
+          text-transform: var(--textCase)
+        }
+    </style>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <a href="/about">About me</a>
+    <a href="/blog">Blog</a>
+    <h1>{pageTitle}</h1>
+    <h2>Das bin ich hier ein paar Informationen....</h2>
+    <ul>
+      <li>Mein Name ist {identity.firstName}</li>
+      <li>I work ind {identity.country} as a {identity.occupation}</li>
+        {identity.hobbies.length >= 2 && 
+        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+      }
+    </ul>
+    <h2>My skills are:</h2>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}   
+    </ul>
+
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+  </body>
+</html>
